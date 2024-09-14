@@ -56,6 +56,7 @@ export const profileRouter = createTRPCRouter({
           name: input.name,
           latitude: input.latitude,
           longitude: input.longitude,
+          initialised: true,
         })
         .where(eq(profiles.userId, input.userId));
     }),

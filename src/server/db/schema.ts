@@ -25,6 +25,7 @@ export const profiles = createTable(
     name: text("name", { length: 256 }),
     latitude: real("latitude"),
     longitude: real("longitude"),
+    initialised: int("initialised", { mode: "boolean" }).default(false),
     createdAt: int("created_at", { mode: "timestamp" })
       .default(sql`(unixepoch())`)
       .notNull(),

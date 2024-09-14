@@ -1,0 +1,1 @@
+ALTER TABLE `whats-up_profile` ADD `initialised` integer DEFAULT false;

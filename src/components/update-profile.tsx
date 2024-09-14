@@ -37,18 +37,31 @@ const ProfileSchema = z.object({
 });
 type Profile = z.infer<typeof ProfileSchema>;
 
+type ProfileFull =
+  | {
+      userId: string;
+      name: string | null;
+      latitude: number | null;
+      longitude: number | null;
+      initialised: boolean | null;
+      createdAt: Date;
+      updatedAt: Date | null;
+    }
+  | null
+  | undefined;
+
 export function UpdateProfile({
   open,
+  initialProfile,
   onClose,
 }: {
   open: boolean;
+  initialProfile: ProfileFull;
   onClose: () => void;
 }) {
   const { userId } = useAuth();
 
   const utils = api.useUtils();
-
-  const initialProfile = api.profile.get.useQuery({ userId: userId });
 
   const updateProfile = api.profile.updateProfile.useMutation({
     onSuccess: async () => {
@@ -119,12 +132,12 @@ export function UpdateProfile({
       }
 
       form.reset({
-        name: initialProfile.data?.name ?? "",
-        latitude: initialProfile.data?.latitude ?? 32,
-        longitude: initialProfile.data?.longitude ?? 104.9,
+        name: initialProfile?.name ?? "",
+        latitude: initialProfile?.latitude ?? 32,
+        longitude: initialProfile?.longitude ?? 104.9,
       });
     }
-  }, [form, open, userId]);
+  }, [form, open, initialProfile, userId]);
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
