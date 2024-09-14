@@ -37,18 +37,15 @@ const ProfileSchema = z.object({
 });
 type Profile = z.infer<typeof ProfileSchema>;
 
-type ProfileFull =
-  | {
-      userId: string;
-      name: string | null;
-      latitude: number | null;
-      longitude: number | null;
-      initialised: boolean | null;
-      createdAt: Date;
-      updatedAt: Date | null;
-    }
-  | null
-  | undefined;
+export type ProfileFull = {
+  userId: string;
+  name: string | null;
+  latitude: number | null;
+  longitude: number | null;
+  initialised: boolean | null;
+  createdAt: Date;
+  updatedAt: Date | null;
+};
 
 export function UpdateProfile({
   open,
@@ -56,7 +53,7 @@ export function UpdateProfile({
   onClose,
 }: {
   open: boolean;
-  initialProfile: ProfileFull;
+  initialProfile: ProfileFull | null | undefined;
   onClose: () => void;
 }) {
   const { userId } = useAuth();

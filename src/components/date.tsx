@@ -1,23 +1,56 @@
+"use client";
+import { useEffect, useMemo, useState } from "react";
 import dayjs from "dayjs";
-import localizedFormat from "dayjs/plugin/localizedFormat";
-import relativeTime from "dayjs/plugin/relativeTime";
 
-import { useMemo } from "react";
+import { type ProfileFull } from "~/components/update-profile";
 
-export function Date({ date }: { date: Date }) {
-  const formattedDate = useMemo<string>(() => {
-    dayjs.extend(localizedFormat);
-    return dayjs(date).format("L LT");
-  }, [date]);
+export function TimeDate() {
+  const [now, setNow] = useState<dayjs.Dayjs>(dayjs());
 
-  return formattedDate;
+  useEffect(() => {
+    const interval = setInterval(() => {
+      // Only update if the minute has changed
+      if (now.isSame(dayjs(), "minute")) return;
+      setNow(dayjs());
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [now]);
+
+  return (
+    <>
+      <p className="text-8xl font-semibold tracking-tight">
+        {now.format("h:mm")}
+        <span className="ms-2 text-4xl font-normal">{now.format("A")}</span>
+      </p>
+      <p className="text-3xl font-semibold tracking-tight">
+        {now.format("DD MMMM YYYY")}
+      </p>
+    </>
+  );
 }
 
-export function DateFromNow({ date }: { date: Date }) {
-  const formattedDate = useMemo<string>(() => {
-    dayjs.extend(relativeTime);
-    return dayjs(date).fromNow();
-  }, [date]);
+export function TimeGreeting({ profile }: { profile: ProfileFull }) {
+  const [now, setNow] = useState<dayjs.Dayjs>(dayjs());
 
-  return formattedDate;
+  useEffect(() => {
+    const interval = setInterval(() => {
+      // Only update if the minute has changed
+      if (now.isSame(dayjs(), "minute")) return;
+      setNow(dayjs());
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [now]);
+
+  const timeGreeting = useMemo<string>(() => {
+    const hour = now.hour();
+    if (hour < 12) return "Good morning";
+    if (hour < 18) return "Good afternoon";
+    return "Good evening";
+  }, [now]);
+
+  return (
+    <p className="text-4xl font-bold tracking-tight">
+      {timeGreeting}, {profile.name}!
+    </p>
+  );
 }
