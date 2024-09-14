@@ -1,10 +1,23 @@
 import { SignedIn, SignedOut, SignUpButton } from "@clerk/nextjs";
+import { currentUser } from "@clerk/nextjs/server";
 import { MessageCircleQuestion } from "lucide-react";
 import Link from "next/link";
 
+import { api } from "~/trpc/server";
 import { Button } from "~/components/ui/button";
 
+export const dynamic = "force-dynamic";
+
 export default async function HomePage() {
+  const user = await currentUser();
+
+  if (user) {
+    const profile = await api.profile.get({ userId: user.id });
+    if (!profile) {
+      await api.profile.create({ userId: user.id });
+    }
+  }
+
   return (
     <>
       <section className="flex w-full flex-col items-center gap-3">

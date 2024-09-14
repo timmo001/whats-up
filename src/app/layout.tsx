@@ -7,10 +7,11 @@ import { dark } from "@clerk/themes";
 
 import { baseUrl } from "~/app/sitemap";
 import { cn } from "~/lib/utils";
-import { Header } from "~/components/header";
 import { HydrateClient } from "~/trpc/server";
-import { ThemeProvider } from "~/components/theme-provider";
 import { TRPCReactProvider } from "~/trpc/react";
+import { Header } from "~/components/header";
+import { ThemeProvider } from "~/components/theme-provider";
+import { Toaster } from "~/components/ui/sonner";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -69,13 +70,14 @@ export default function RootLayout({
               <HydrateClient>
                 <Header />
                 <main
-                  className="container flex min-h-screen flex-col items-center justify-start gap-8 p-4"
+                  className="flex min-h-screen w-full flex-col items-center justify-start gap-8 p-4"
                   style={{
                     minHeight: "calc(100vh - 64px)",
                   }}
                 >
                   {children}
                 </main>
+                <Toaster />
               </HydrateClient>
             </TRPCReactProvider>
           </ThemeProvider>
