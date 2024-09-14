@@ -5,6 +5,7 @@ import { Inter as FontSans } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
 
+import { baseUrl } from "~/app/sitemap";
 import { cn } from "~/lib/utils";
 import { Header } from "~/components/header";
 import { HydrateClient } from "~/trpc/server";
@@ -16,7 +17,6 @@ const fontSans = FontSans({
   variable: "--font-sans",
 });
 
-export const baseUrl = "https://whatsup.timmo.dev";
 const baseUrlObj = new URL(baseUrl);
 
 export const metadata: Metadata = {

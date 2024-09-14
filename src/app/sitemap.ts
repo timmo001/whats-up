@@ -1,6 +1,6 @@
 import { type MetadataRoute } from "next";
 
-import { baseUrl } from "~/app/layout";
+export const baseUrl = "https://whatsup.timmo.dev";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const result: MetadataRoute.Sitemap = [
