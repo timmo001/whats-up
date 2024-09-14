@@ -5,6 +5,7 @@ Track your day from one place.
 ## Development
 
 ### Setup
+
 Setup environment variables:
 
 ```bash
