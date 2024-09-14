@@ -36,7 +36,7 @@ export default async function DashboardPage() {
         {/* <Weather /> */}
       </section>
       {/* Tasks */}
-      <section className="flex w-full flex-col items-center gap-3">
+      <section className="flex w-full flex-col items-center gap-1">
         <Tasks userId={user.id} />
       </section>
     </>

@@ -60,7 +60,7 @@ export function Tasks({ userId }: { userId: string }) {
 
   return (
     <>
-      <h2 className="text-3xl font-semibold tracking-tight">Tasks</h2>
+      <h2 className="mb-1 text-3xl font-semibold tracking-tight">Tasks</h2>
       {tasksQuery.data?.map((task) => (
         <div key={task.id} className="flex flex-row items-center gap-2">
           <div className="relative w-72">
@@ -111,10 +111,11 @@ export function Tasks({ userId }: { userId: string }) {
         </div>
       ))}
       <Button
+        size="sm"
+        variant="secondary"
         onClick={() => {
           createTask.mutate({ userId: userId });
         }}
-        variant="secondary"
       >
         <Plus className="h-4 w-4" />
         <span className="ms-1">Add Task</span>
