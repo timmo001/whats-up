@@ -1,4 +1,5 @@
 import { SignedIn, SignedOut, SignUpButton } from "@clerk/nextjs";
+import { MessageCircleQuestion } from "lucide-react";
 import Link from "next/link";
 
 import { Button } from "~/components/ui/button";
@@ -7,7 +8,8 @@ export default async function HomePage() {
   return (
     <>
       <section className="flex w-full flex-col items-center gap-3">
-        <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
+        <h1 className="flex items-center gap-3 text-5xl font-extrabold tracking-tight sm:text-[5rem]">
+          <MessageCircleQuestion size={82} />
           What&apos;s Up?
         </h1>
         <p className="text-xl">Track your day from one place</p>

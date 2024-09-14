@@ -6,6 +6,7 @@ import Link from "next/link";
 
 import { ModeToggle } from "~/components/theme-toggle";
 import { Button } from "~/components/ui/button";
+import { MessageCircleQuestion } from "lucide-react";
 
 export function Header() {
   const pathname = usePathname();
@@ -14,6 +15,7 @@ export function Header() {
     Array<{
       name: string;
       href?: string;
+      icon?: React.ReactNode;
     }>
   >(() => {
     switch (pathname) {
@@ -21,7 +23,13 @@ export function Header() {
         return [];
       // case "/dashboard":
       default:
-        return [{ name: "What's Up?", href: "/" }];
+        return [
+          {
+            name: "What's Up?",
+            href: "/",
+            icon: <MessageCircleQuestion size={22} />,
+          },
+        ];
     }
   }, [pathname]);
 
@@ -31,7 +39,16 @@ export function Header() {
         {title.map((t, i) => (
           <span key={i}>
             {i > 0 && <span className="mr-4 text-gray-400">/</span>}
-            {t.href ? <Link href={t.href}>{t.name}</Link> : t.name}
+            {t.href ? (
+              <Link href={t.href}>
+                <span className="flex items-center gap-1">
+                  {t.icon}
+                  {t.name}
+                </span>
+              </Link>
+            ) : (
+              t.name
+            )}
           </span>
         ))}
       </h1>
