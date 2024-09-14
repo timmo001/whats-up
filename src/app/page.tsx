@@ -24,6 +24,10 @@ export default async function HomePage() {
           </Link>
         </SignedIn>
       </section>
+      <section className="flex flex-col items-center justify-center gap-8">
+        <h2 className="text-3xl font-semibold">Features</h2>
+        <p className="text-xl font-light">TODO</p>
+      </section>
     </>
   );
 }
