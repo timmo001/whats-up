@@ -84,7 +84,7 @@ export const taskRouter = createTRPCRouter({
   updateContent: publicProcedure
     .input(
       SingleItemSchema.extend({
-        content: z.string().min(1),
+        content: z.string(),
       }),
     )
     .mutation(async ({ ctx, input }) => {

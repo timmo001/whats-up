@@ -5,6 +5,7 @@ import { api } from "~/trpc/react";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { toast } from "sonner";
+import { Checkbox } from "~/components/ui/checkbox";
 
 let updateTimeout: NodeJS.Timeout | null = null;
 export function Tasks({ userId }: { userId: string }) {
@@ -35,7 +36,7 @@ export function Tasks({ userId }: { userId: string }) {
     },
   };
 
-  const completeTask = api.task.updateCompletion.useMutation(
+  const updateCompletion = api.task.updateCompletion.useMutation(
     updateTaskMutationOptions,
   );
   const updateContent = api.task.updateContent.useMutation(
@@ -63,35 +64,49 @@ export function Tasks({ userId }: { userId: string }) {
       {tasksQuery.data?.map((task) => (
         <div key={task.id} className="flex flex-row items-center gap-2">
           <div className="relative w-72">
-            <Input
-              className="pr-10"
-              type="text"
-              placeholder="Do X"
-              defaultValue={task.content ?? ""}
-              onChange={(e) => {
-                if (updateTimeout) clearTimeout(updateTimeout);
-                updateTimeout = setTimeout(() => {
-                  updateContent.mutate({
+            <div className="flex items-center">
+              <Checkbox
+                className="absolute left-2 top-1/2 z-10 -translate-y-1/2 transform"
+                aria-label="Mark task as complete"
+                defaultChecked={task.completed ?? false}
+                onCheckedChange={(checked) => {
+                  updateCompletion.mutate({
                     id: task.id,
                     userId: userId,
-                    content: e.target.value,
+                    completed: checked as boolean,
                   });
-                  updateTimeout = null;
-                }, 200);
-              }}
-            />
-            <Button
-              className="absolute right-0 top-0 h-full"
-              aria-label="Delete"
-              size="icon"
-              variant="ghost"
-              onClick={() => {
-                deleteTask.mutate({ id: task.id, userId: userId });
-              }}
-            >
-              <X className="h-4 w-4" />
-              <span className="sr-only">Delete</span>
-            </Button>
+                }}
+              />
+              <Input
+                className="pl-8 pr-10"
+                type="text"
+                placeholder="Do X"
+                defaultValue={task.content ?? ""}
+                onChange={(e) => {
+                  if (updateTimeout) clearTimeout(updateTimeout);
+                  updateTimeout = setTimeout(() => {
+                    updateContent.mutate({
+                      id: task.id,
+                      userId: userId,
+                      content: e.target.value,
+                    });
+                    updateTimeout = null;
+                  }, 200);
+                }}
+              />
+              <Button
+                className="absolute right-0 top-0 h-full"
+                aria-label="Delete"
+                size="icon"
+                variant="ghost"
+                onClick={() => {
+                  deleteTask.mutate({ id: task.id, userId: userId });
+                }}
+              >
+                <X className="h-4 w-4" />
+                <span className="sr-only">Delete</span>
+              </Button>
+            </div>
           </div>
         </div>
       ))}
@@ -99,6 +114,7 @@ export function Tasks({ userId }: { userId: string }) {
         onClick={() => {
           createTask.mutate({ userId: userId });
         }}
+        variant="secondary"
       >
         <Plus className="h-4 w-4" />
         <span className="ms-1">Add Task</span>
