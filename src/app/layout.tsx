@@ -12,6 +12,7 @@ import { TRPCReactProvider } from "~/trpc/react";
 import { Header } from "~/components/header";
 import { ThemeProvider } from "~/components/theme-provider";
 import { Toaster } from "~/components/ui/sonner";
+import { QueryProvider } from "~/components/providers/query";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -66,20 +67,22 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <TRPCReactProvider>
-              <HydrateClient>
-                <Header />
-                <main
-                  className="flex min-h-screen w-full flex-col items-center justify-start gap-8 p-4"
-                  style={{
-                    minHeight: "calc(100vh - 64px)",
-                  }}
-                >
-                  {children}
-                </main>
-                <Toaster />
-              </HydrateClient>
-            </TRPCReactProvider>
+            <QueryProvider>
+              <TRPCReactProvider>
+                <HydrateClient>
+                  <Header />
+                  <main
+                    className="flex min-h-screen w-full flex-col items-center justify-start gap-8 p-4"
+                    style={{
+                      minHeight: "calc(100vh - 64px)",
+                    }}
+                  >
+                    {children}
+                  </main>
+                  <Toaster />
+                </HydrateClient>
+              </TRPCReactProvider>
+            </QueryProvider>
           </ThemeProvider>
         </body>
       </html>

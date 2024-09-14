@@ -4,10 +4,9 @@ import { currentUser } from "@clerk/nextjs/server";
 import { api } from "~/trpc/server";
 import { TimeDate, TimeGreeting } from "~/components/date";
 import { Tasks } from "~/components/tasks";
+import { Weather } from "~/components/weather";
 
 export const dynamic = "force-dynamic";
-
-// TODO: Get additonal data from client queries (tanstack query)
 
 export default async function DashboardPage() {
   const user = await currentUser();
@@ -33,7 +32,7 @@ export default async function DashboardPage() {
       </section>
       {/* Weather */}
       <section className="flex w-full flex-col items-center gap-3">
-        {/* <Weather /> */}
+        <Weather profile={profile} />
       </section>
       {/* Tasks */}
       <section className="flex w-full flex-col items-center gap-1">
