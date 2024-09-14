@@ -34,6 +34,8 @@ jobs:
         run: pnpm install
       - name: Build
         run: pnpm lint
+        env:
+          SKIP_ENV_VALIDATION: true
   lint-markdown-links:
     uses: timmo001/workflows/.github/workflows/lint-markdown-links.yml@master
   lint-markdownlint:
