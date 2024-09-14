@@ -1,5 +1,5 @@
 import { profileRouter } from "~/server/api/routers/profile";
-import { todoRouter } from "~/server/api/routers/todo";
+import { taskRouter } from "~/server/api/routers/task";
 import { createCallerFactory, createTRPCRouter } from "~/server/api/trpc";
 
 /**
@@ -9,7 +9,7 @@ import { createCallerFactory, createTRPCRouter } from "~/server/api/trpc";
  */
 export const appRouter = createTRPCRouter({
   profile: profileRouter,
-  todo: todoRouter,
+  task: taskRouter,
 });
 
 // export type definition of API

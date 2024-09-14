@@ -166,7 +166,7 @@ export function UpdateProfile({
             <h3 className="mt-2 text-lg font-medium">Location</h3>
             <Button type="button" variant="outline" onClick={onGetLocation}>
               <LocateFixed className="h-4 w-4" />
-              <span className="ms-2">Use my location</span>
+              <span className="ms-1">Use my location</span>
             </Button>
             <FormField
               control={form.control}
@@ -197,7 +197,7 @@ export function UpdateProfile({
             <DialogFooter className="mt-4 flex justify-end">
               <Button type="button" onClick={onSubmit}>
                 <Save className="h-4 w-4" />
-                <span className="ms-2">Update</span>
+                <span className="ms-1">Update</span>
               </Button>
             </DialogFooter>
           </form>

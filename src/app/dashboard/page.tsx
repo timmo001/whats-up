@@ -3,6 +3,7 @@ import { currentUser } from "@clerk/nextjs/server";
 
 import { api } from "~/trpc/server";
 import { TimeDate, TimeGreeting } from "~/components/date";
+import { Tasks } from "~/components/tasks";
 
 export const dynamic = "force-dynamic";
 
@@ -19,16 +20,24 @@ export default async function DashboardPage() {
   return (
     <>
       {/* Greeting */}
-      <section className="flex w-full flex-col items-center gap-3">
+      <section className="flex w-full flex-col items-center">
         <TimeGreeting profile={profile} />
       </section>
       {/* Time/Date */}
-      <section className="flex w-full flex-col items-center gap-3">
+      <section className="flex w-full flex-col items-center gap-1">
         <TimeDate />
+      </section>
+      {/* Agenda */}
+      <section className="flex w-full flex-col items-center gap-3">
+        {/* <Agenda /> */}
+      </section>
+      {/* Weather */}
+      <section className="flex w-full flex-col items-center gap-3">
+        {/* <Weather /> */}
       </section>
       {/* Tasks */}
       <section className="flex w-full flex-col items-center gap-3">
-        <p className="text-3xl font-semibold tracking-tight">Tasks</p>
+        <Tasks userId={user.id} />
       </section>
     </>
   );

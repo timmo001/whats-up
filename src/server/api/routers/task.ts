@@ -3,7 +3,7 @@ import { type LibSQLDatabase } from "drizzle-orm/libsql";
 import { z } from "zod";
 
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
-import { todos } from "~/server/db/schema";
+import { tasks } from "~/server/db/schema";
 
 const SingleItemSchema = z.object({
   id: z.number().min(1),
@@ -19,26 +19,25 @@ async function canAccessItem({
   db: LibSQLDatabase<typeof import("~/server/db/schema")>;
   input: SingleItem;
 }): Promise<boolean> {
-  const item = await db.query.todos.findFirst({
-    where: (todos, { eq }) => eq(todos.id, input.id),
+  const item = await db.query.tasks.findFirst({
+    where: (tasks, { eq }) => eq(tasks.id, input.id),
   });
   return item?.userId === input.userId || false;
 }
 
-export const todoRouter = createTRPCRouter({
+export const taskRouter = createTRPCRouter({
   //
   // Create
   //
   create: publicProcedure
     .input(
       z.object({
-        content: z.string().min(1),
         userId: z.string().min(1),
       }),
     )
     .mutation(async ({ ctx, input }) => {
-      await ctx.db.insert(todos).values({
-        content: input.content,
+      await ctx.db.insert(tasks).values({
+        content: "",
         userId: input.userId,
       });
     }),
@@ -46,19 +45,22 @@ export const todoRouter = createTRPCRouter({
   //
   // Read
   //
-  get: publicProcedure
+  getAll: publicProcedure
     .input(
       z.object({
         userId: z.string().min(1),
       }),
     )
     .query(async ({ ctx, input }) => {
-      const post = await ctx.db.query.todos.findMany({
-        where: (todos, { eq }) => eq(todos.userId, input.userId),
-        orderBy: (todos, { desc }) => [desc(todos.position)],
+      const items = await ctx.db.query.tasks.findMany({
+        where: (tasks, { eq }) => eq(tasks.userId, input.userId),
+        orderBy: (tasks, { asc, desc }) => [
+          desc(tasks.position),
+          asc(tasks.createdAt),
+        ],
       });
 
-      return post ?? null;
+      return items ?? null;
     }),
 
   //
@@ -74,9 +76,9 @@ export const todoRouter = createTRPCRouter({
       if (!(await canAccessItem({ db: ctx.db, input }))) return;
 
       await ctx.db
-        .update(todos)
+        .update(tasks)
         .set({ completed: input.completed })
-        .where(eq(todos.id, input.id));
+        .where(eq(tasks.id, input.id));
     }),
 
   updateContent: publicProcedure
@@ -89,9 +91,9 @@ export const todoRouter = createTRPCRouter({
       if (!(await canAccessItem({ db: ctx.db, input }))) return;
 
       await ctx.db
-        .update(todos)
+        .update(tasks)
         .set({ content: input.content })
-        .where(eq(todos.id, input.id));
+        .where(eq(tasks.id, input.id));
     }),
 
   updatePosition: publicProcedure
@@ -106,9 +108,9 @@ export const todoRouter = createTRPCRouter({
       if (!(await canAccessItem({ db: ctx.db, input }))) return;
 
       await ctx.db
-        .update(todos)
+        .update(tasks)
         .set({ position: input.position })
-        .where(eq(todos.id, input.id));
+        .where(eq(tasks.id, input.id));
     }),
 
   //
@@ -119,6 +121,6 @@ export const todoRouter = createTRPCRouter({
     .mutation(async ({ ctx, input }) => {
       if (!(await canAccessItem({ db: ctx.db, input }))) return;
 
-      await ctx.db.delete(todos).where(eq(todos.id, input.id));
+      await ctx.db.delete(tasks).where(eq(tasks.id, input.id));
     }),
 });

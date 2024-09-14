@@ -38,8 +38,8 @@ export const profiles = createTable(
   }),
 );
 
-export const todos = createTable(
-  "todo",
+export const tasks = createTable(
+  "task",
   {
     id: int("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
     completed: int("completed", { mode: "boolean" }).default(false),
@@ -54,6 +54,6 @@ export const todos = createTable(
     ),
   },
   (example) => ({
-    userIdIndex: index("todo_user_id_idx").on(example.userId),
+    userIdIndex: index("task_user_id_idx").on(example.userId),
   }),
 );
