@@ -12,7 +12,7 @@ Setup environment variables:
 cp .env.example .env
 ```
 
-Now add your own values to the `.env` file. We are using [Turso](https://https://turso.tech) for our database but you can use any SQLite database, local or hosted.
+Now add your own values to the `.env` file. We are using [Turso](https://turso.tech) for our database but you can use any SQLite database, local or hosted.
 
 ### Install and run
 
