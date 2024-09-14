@@ -34,8 +34,8 @@ export function TimeGreeting({ profile }: { profile: ProfileFull }) {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      // Only update if the minute has changed
-      if (now.isSame(dayjs(), "minute")) return;
+      // Only update if the hour has changed
+      if (now.isSame(dayjs(), "hour")) return;
       setNow(dayjs());
     }, 1000);
     return () => clearInterval(interval);
