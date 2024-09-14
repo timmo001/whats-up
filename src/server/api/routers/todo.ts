@@ -1,20 +1,28 @@
 import { eq } from "drizzle-orm";
-import { LibSQLDatabase } from "drizzle-orm/libsql";
+import { type LibSQLDatabase } from "drizzle-orm/libsql";
 import { z } from "zod";
 
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 import { todos } from "~/server/db/schema";
 
-async function canAccessItem(
-  db: LibSQLDatabase<
-    typeof import("/home/aidan/projects/whats-up/src/server/db/schema")
-  >,
-  { id, userId }: { id: number; userId: string },
-) {
+const SingleItemSchema = z.object({
+  id: z.number().min(1),
+  userId: z.string().min(1),
+});
+type SingleItem = z.infer<typeof SingleItemSchema>;
+
+async function canAccessItem({
+  db,
+  input,
+}: {
+  // eslint-disable-next-line @typescript-eslint/consistent-type-imports
+  db: LibSQLDatabase<typeof import("~/server/db/schema")>;
+  input: SingleItem;
+}): Promise<boolean> {
   const item = await db.query.todos.findFirst({
-    where: (todos, { eq }) => eq(todos.id, id),
+    where: (todos, { eq }) => eq(todos.id, input.id),
   });
-  return item && item.userId === userId;
+  return item?.userId === input.userId || false;
 }
 
 export const todoRouter = createTRPCRouter({
@@ -58,17 +66,12 @@ export const todoRouter = createTRPCRouter({
   //
   updateCompletion: publicProcedure
     .input(
-      z.object({
-        id: z.number().min(1),
+      SingleItemSchema.extend({
         completed: z.boolean(),
-        userId: z.string().min(1),
       }),
     )
     .mutation(async ({ ctx, input }) => {
-      if (
-        !(await canAccessItem(ctx.db, { id: input.id, userId: input.userId }))
-      )
-        return;
+      if (!(await canAccessItem({ db: ctx.db, input }))) return;
 
       await ctx.db
         .update(todos)
@@ -78,17 +81,12 @@ export const todoRouter = createTRPCRouter({
 
   updateContent: publicProcedure
     .input(
-      z.object({
-        id: z.number().min(1),
+      SingleItemSchema.extend({
         content: z.string().min(1),
-        userId: z.string().min(1),
       }),
     )
     .mutation(async ({ ctx, input }) => {
-      if (
-        !(await canAccessItem(ctx.db, { id: input.id, userId: input.userId }))
-      )
-        return;
+      if (!(await canAccessItem({ db: ctx.db, input }))) return;
 
       await ctx.db
         .update(todos)
@@ -105,10 +103,7 @@ export const todoRouter = createTRPCRouter({
       }),
     )
     .mutation(async ({ ctx, input }) => {
-      if (
-        !(await canAccessItem(ctx.db, { id: input.id, userId: input.userId }))
-      )
-        return;
+      if (!(await canAccessItem({ db: ctx.db, input }))) return;
 
       await ctx.db
         .update(todos)
@@ -120,17 +115,9 @@ export const todoRouter = createTRPCRouter({
   // Delete
   //
   delete: publicProcedure
-    .input(
-      z.object({
-        id: z.number().min(1),
-        userId: z.string().min(1),
-      }),
-    )
+    .input(SingleItemSchema)
     .mutation(async ({ ctx, input }) => {
-      if (
-        !(await canAccessItem(ctx.db, { id: input.id, userId: input.userId }))
-      )
-        return;
+      if (!(await canAccessItem({ db: ctx.db, input }))) return;
 
       await ctx.db.delete(todos).where(eq(todos.id, input.id));
     }),
