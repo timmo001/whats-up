@@ -12,6 +12,17 @@ import { index, int, sqliteTableCreator, text } from "drizzle-orm/sqlite-core";
  */
 export const createTable = sqliteTableCreator((name) => `whats-up_${name}`);
 
+export const profiles = createTable(
+  "profile",
+  {
+    userId: text("user_id", { length: 256 }).primaryKey(),
+    name: text("name", { length: 256 }),
+  },
+  (example) => ({
+    nameIndex: index("profile_name_idx").on(example.name),
+  }),
+);
+
 export const todos = createTable(
   "todo",
   {
@@ -28,6 +39,6 @@ export const todos = createTable(
     ),
   },
   (example) => ({
-    userIdIndex: index("user_id_idx").on(example.userId),
+    userIdIndex: index("todo_user_id_idx").on(example.userId),
   }),
 );
