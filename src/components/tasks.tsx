@@ -112,7 +112,7 @@ export function Tasks({ userId }: { userId: string }) {
       ))}
       <Button
         size="sm"
-        variant="secondary"
+        variant="ghost"
         onClick={() => {
           createTask.mutate({ userId: userId });
         }}
