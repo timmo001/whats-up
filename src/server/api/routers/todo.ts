@@ -65,7 +65,9 @@ export const todoRouter = createTRPCRouter({
       }),
     )
     .mutation(async ({ ctx, input }) => {
-      if (!canAccessItem(ctx.db, { id: input.id, userId: input.userId }))
+      if (
+        !(await canAccessItem(ctx.db, { id: input.id, userId: input.userId }))
+      )
         return;
 
       await ctx.db
@@ -83,7 +85,9 @@ export const todoRouter = createTRPCRouter({
       }),
     )
     .mutation(async ({ ctx, input }) => {
-      if (!canAccessItem(ctx.db, { id: input.id, userId: input.userId }))
+      if (
+        !(await canAccessItem(ctx.db, { id: input.id, userId: input.userId }))
+      )
         return;
 
       await ctx.db
@@ -101,7 +105,9 @@ export const todoRouter = createTRPCRouter({
       }),
     )
     .mutation(async ({ ctx, input }) => {
-      if (!canAccessItem(ctx.db, { id: input.id, userId: input.userId }))
+      if (
+        !(await canAccessItem(ctx.db, { id: input.id, userId: input.userId }))
+      )
         return;
 
       await ctx.db
@@ -121,7 +127,9 @@ export const todoRouter = createTRPCRouter({
       }),
     )
     .mutation(async ({ ctx, input }) => {
-      if (!canAccessItem(ctx.db, { id: input.id, userId: input.userId }))
+      if (
+        !(await canAccessItem(ctx.db, { id: input.id, userId: input.userId }))
+      )
         return;
 
       await ctx.db.delete(todos).where(eq(todos.id, input.id));

@@ -8,7 +8,7 @@ export default async function HomePage() {
     <>
       <section className="flex w-full flex-col items-center gap-3">
         <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
-          What's Up?
+          What&apos;s Up?
         </h1>
         <p className="text-xl">Track your day from one place</p>
       </section>

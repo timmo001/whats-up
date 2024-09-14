@@ -1,4 +1,4 @@
-import { MetadataRoute } from "next";
+import { type MetadataRoute } from "next";
 
 import { metadata as mainMetadata } from "~/app/layout";
 
@@ -14,7 +14,7 @@ export default function manifest(): MetadataRoute.Manifest {
   const manifest: MetadataRoute.Manifest = {
     name: mainMetadata.title as string,
     short_name: mainMetadata.title as string,
-    description: mainMetadata.description as string,
+    description: mainMetadata.description!,
     start_url: "/",
     display: "standalone",
     background_color: "#020817",

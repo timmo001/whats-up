@@ -20,7 +20,7 @@ export async function GET() {
       >
         <MessageCircleQuestion size={420} />
 
-        <div style={{ marginTop: 8 }}>What's Up?</div>
+        <div style={{ marginTop: 8 }}>What&apos;s Up?</div>
       </div>
     ),
     {
