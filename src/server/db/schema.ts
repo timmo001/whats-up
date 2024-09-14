@@ -17,6 +17,12 @@ export const profiles = createTable(
   {
     userId: text("user_id", { length: 256 }).primaryKey(),
     name: text("name", { length: 256 }),
+    createdAt: int("created_at", { mode: "timestamp" })
+      .default(sql`(unixepoch())`)
+      .notNull(),
+    updatedAt: int("updated_at", { mode: "timestamp" }).$onUpdate(
+      () => new Date(),
+    ),
   },
   (example) => ({
     nameIndex: index("profile_name_idx").on(example.name),
