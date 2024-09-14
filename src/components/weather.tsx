@@ -67,7 +67,7 @@ export function Weather({ profile }: { profile: ProfileFull }) {
             />
             <div className="flex flex-col items-start justify-center gap-1">
               <span className="text-4xl font-bold">
-                {weatherCode[forecastNow.data.weatherCode] || "Unknown"}
+                {weatherCode[forecastNow.data.weatherCode] ?? "Unknown"}
               </span>
               <div className="flex flex-row items-start gap-1">
                 <span className="text-5xl font-semibold">

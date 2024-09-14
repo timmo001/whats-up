@@ -26,7 +26,7 @@ export function WeatherIcon({
   className?: string;
   night?: boolean;
 }) {
-  const weatherIcon: { [key: number]: ElementType } = {
+  const weatherIcon: Record<number, ElementType> = {
     0: night ? CloudMoon : Cloud, // "Unknown"
     1000: night ? MoonStar : Sun, //"Clear"
     1100: night ? CloudMoon : CloudSun, // "Mostly Clear"

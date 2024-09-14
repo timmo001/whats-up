@@ -44,9 +44,9 @@ export function Tasks({ userId }: { userId: string }) {
   const updateContent = api.task.updateContent.useMutation(
     updateTaskMutationOptions,
   );
-  const updatePosition = api.task.updatePosition.useMutation(
-    updateTaskMutationOptions,
-  );
+  // const updatePosition = api.task.updatePosition.useMutation(
+  //   updateTaskMutationOptions,
+  // );
 
   // Delete
   const deleteTask = api.task.delete.useMutation({
