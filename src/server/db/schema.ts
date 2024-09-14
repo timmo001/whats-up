@@ -2,7 +2,13 @@
 // https://orm.drizzle.team/docs/sql-schema-declaration
 
 import { sql } from "drizzle-orm";
-import { index, int, sqliteTableCreator, text } from "drizzle-orm/sqlite-core";
+import {
+  index,
+  int,
+  real,
+  sqliteTableCreator,
+  text,
+} from "drizzle-orm/sqlite-core";
 
 /**
  * This is an example of how to use the multi-project schema feature of Drizzle ORM. Use the same
@@ -17,6 +23,8 @@ export const profiles = createTable(
   {
     userId: text("user_id", { length: 256 }).primaryKey(),
     name: text("name", { length: 256 }),
+    latitude: real("latitude"),
+    longitude: real("longitude"),
     createdAt: int("created_at", { mode: "timestamp" })
       .default(sql`(unixepoch())`)
       .notNull(),

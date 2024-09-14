@@ -12,13 +12,11 @@ export const profileRouter = createTRPCRouter({
     .input(
       z.object({
         userId: z.string().min(1),
-        name: z.string().min(1),
       }),
     )
     .mutation(async ({ ctx, input }) => {
       await ctx.db.insert(profiles).values({
         userId: input.userId,
-        name: input.name,
       });
     }),
 
@@ -53,6 +51,21 @@ export const profileRouter = createTRPCRouter({
       await ctx.db
         .update(profiles)
         .set({ name: input.name })
+        .where(eq(profiles.userId, input.userId));
+    }),
+
+  updateLocation: publicProcedure
+    .input(
+      z.object({
+        userId: z.string().min(1),
+        latitude: z.number(),
+        longitude: z.number(),
+      }),
+    )
+    .mutation(async ({ ctx, input }) => {
+      await ctx.db
+        .update(profiles)
+        .set({ latitude: input.latitude, longitude: input.longitude })
         .where(eq(profiles.userId, input.userId));
     }),
 
