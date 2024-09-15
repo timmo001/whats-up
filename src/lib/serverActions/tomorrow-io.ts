@@ -42,8 +42,6 @@ export async function getWeatherForecastTimelines(
       );
       url.searchParams.append("units", units);
       url.searchParams.append("timesteps", "current");
-      url.searchParams.append("startTime", "now");
-      url.searchParams.append("endTime", "nowPlus5d");
       url.searchParams.append("timezone", timezone);
 
       console.log("Get weather timelines for location:", location, url);
