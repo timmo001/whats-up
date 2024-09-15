@@ -66,7 +66,7 @@ export function Tasks({ userId }: { userId: string }) {
         Tasks
       </h2>
       <div className="w-full max-w-full xl:max-w-96">
-        <div className="custom-scrollbar flex flex-col gap-2 overflow-y-auto px-3 xl:max-h-[33vh]">
+        <div className="custom-scrollbar flex flex-col gap-2 overflow-y-auto px-3 py-1 xl:max-h-[33vh]">
           {tasksQuery.data?.map((task) => (
             <div
               key={task.id}
@@ -87,7 +87,7 @@ export function Tasks({ userId }: { userId: string }) {
                     }}
                   />
                   <Input
-                    className="pl-8 pr-10"
+                    className="border-0 bg-background/40 pl-8 pr-10 focus-visible:ring-background/40 focus-visible:ring-offset-background/40"
                     type="text"
                     placeholder="Do X"
                     defaultValue={task.content ?? ""}
