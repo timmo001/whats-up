@@ -65,69 +65,71 @@ export function Tasks({ userId }: { userId: string }) {
       <h2 className="mb-1 w-full max-w-full text-center text-3xl font-semibold tracking-tight xl:max-w-96">
         Tasks
       </h2>
-      <div className="custom-scrollbar flex w-full max-w-full flex-col justify-end gap-2 overflow-y-auto px-3 xl:max-w-96">
-        {tasksQuery.data?.map((task) => (
-          <div
-            key={task.id}
-            className="flex w-full flex-row items-center gap-2"
-          >
-            <div className="relative w-full">
-              <div className="flex items-center">
-                <Checkbox
-                  className="absolute left-2 top-1/2 z-10 -translate-y-1/2 transform"
-                  aria-label="Mark task as complete"
-                  defaultChecked={task.completed ?? false}
-                  onCheckedChange={(checked) => {
-                    updateCompletion.mutate({
-                      id: task.id,
-                      userId: userId,
-                      completed: checked as boolean,
-                    });
-                  }}
-                />
-                <Input
-                  className="pl-8 pr-10"
-                  type="text"
-                  placeholder="Do X"
-                  defaultValue={task.content ?? ""}
-                  onChange={(e) => {
-                    if (updateTimeout) clearTimeout(updateTimeout);
-                    updateTimeout = setTimeout(() => {
-                      updateContent.mutate({
+      <div className="w-full max-w-full xl:max-w-96">
+        <div className="custom-scrollbar flex flex-col gap-2 overflow-y-auto px-3 xl:max-h-[33vh]">
+          {tasksQuery.data?.map((task) => (
+            <div
+              key={task.id}
+              className="flex w-full flex-row items-center gap-2"
+            >
+              <div className="relative w-full">
+                <div className="flex items-center">
+                  <Checkbox
+                    className="absolute left-2 top-1/2 z-10 -translate-y-1/2 transform"
+                    aria-label="Mark task as complete"
+                    defaultChecked={task.completed ?? false}
+                    onCheckedChange={(checked) => {
+                      updateCompletion.mutate({
                         id: task.id,
                         userId: userId,
-                        content: e.target.value,
+                        completed: checked as boolean,
                       });
-                      updateTimeout = null;
-                    }, 200);
-                  }}
-                />
-                <Button
-                  className="absolute right-0 top-0 h-full"
-                  aria-label="Delete"
-                  size="icon"
-                  variant="ghost"
-                  onClick={() => {
-                    deleteTask.mutate({ id: task.id, userId: userId });
-                  }}
-                >
-                  <X className="h-4 w-4" />
-                  <span className="sr-only">Delete</span>
-                </Button>
+                    }}
+                  />
+                  <Input
+                    className="pl-8 pr-10"
+                    type="text"
+                    placeholder="Do X"
+                    defaultValue={task.content ?? ""}
+                    onChange={(e) => {
+                      if (updateTimeout) clearTimeout(updateTimeout);
+                      updateTimeout = setTimeout(() => {
+                        updateContent.mutate({
+                          id: task.id,
+                          userId: userId,
+                          content: e.target.value,
+                        });
+                        updateTimeout = null;
+                      }, 200);
+                    }}
+                  />
+                  <Button
+                    className="absolute right-0 top-0 h-full"
+                    aria-label="Delete"
+                    size="icon"
+                    variant="ghost"
+                    onClick={() => {
+                      deleteTask.mutate({ id: task.id, userId: userId });
+                    }}
+                  >
+                    <X className="h-4 w-4" />
+                    <span className="sr-only">Delete</span>
+                  </Button>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-        <Button
-          className="w-full"
-          variant="ghost"
-          onClick={() => {
-            createTask.mutate({ userId: userId });
-          }}
-        >
-          <Plus className="h-4 w-4" />
-          <span className="ms-1">Add Task</span>
-        </Button>
+          ))}
+          <Button
+            className="w-full"
+            variant="ghost"
+            onClick={() => {
+              createTask.mutate({ userId: userId });
+            }}
+          >
+            <Plus className="h-4 w-4" />
+            <span className="ms-1">Add Task</span>
+          </Button>
+        </div>
       </div>
     </>
   );
