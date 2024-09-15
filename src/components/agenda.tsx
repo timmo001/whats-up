@@ -2,9 +2,9 @@
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
-import ICAL from "ical.js";
 
 import { type ProfileFull } from "~/components/update-profile";
+import { getCalendarEvents } from "~/lib/serverActions/calendar";
 
 export function Agenda({ profile }: { profile: ProfileFull }) {
   const [now, setNow] = useState<dayjs.Dayjs>(dayjs());
@@ -17,24 +17,18 @@ export function Agenda({ profile }: { profile: ProfileFull }) {
     queryKey: ["calendar"],
     queryFn: async () => {
       if (!profile.calendarURL) return [];
-      const response = await fetch(profile.calendarURL);
-      const icalData = await response.text();
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-      const jcalData = ICAL.parse(icalData);
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-      const comp = new ICAL.Component(jcalData);
-      const events = comp.getAllSubcomponents("vevent").map((vevent) => {
-        const event = new ICAL.Event(vevent);
-        return {
-          summary: event.summary,
-          start: dayjs(event.startDate.toJSDate()),
-          end: dayjs(event.endDate.toJSDate()),
-        };
-      });
-      const now = dayjs();
+      const events = await getCalendarEvents(profile.calendarURL);
+      const dateNow = dayjs();
       // Only return events that have not ended and are not in the past
       return events
-        .filter((event) => event.end.isAfter(now) || event.start.isAfter(now))
+        .map((e) => ({
+          ...e,
+          start: dayjs(e.start),
+          end: dayjs(e.end),
+        }))
+        .filter(
+          (event) => event.end.isAfter(dateNow) || event.start.isAfter(dateNow),
+        )
         .sort((a, b) => a.start.diff(b.start));
     },
   });
