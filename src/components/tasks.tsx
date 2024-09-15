@@ -87,7 +87,7 @@ export function Tasks({ userId }: { userId: string }) {
                     }}
                   />
                   <Input
-                    className="border-0 bg-background/40 pl-8 pr-10 focus-visible:ring-background/40 focus-visible:ring-offset-background/40"
+                    className="bg-background/60 pl-8 pr-10 focus-visible:ring-foreground/60 focus-visible:ring-offset-0"
                     type="text"
                     placeholder="Do X"
                     defaultValue={task.content ?? ""}
