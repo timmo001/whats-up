@@ -57,8 +57,8 @@ export function Weather({ profile }: { profile: ProfileFull }) {
         </span>
       ) : (
         <>
-          <div className="flex w-full flex-row justify-between gap-1">
-            <div className="flex flex-row items-start justify-center gap-1">
+          <div className="flex w-full flex-row flex-wrap justify-stretch gap-2 sm:flex-nowrap">
+            <div className="flex flex-1 flex-row items-center justify-center gap-1 sm:justify-start">
               <WeatherIcon
                 className="h-24 w-24"
                 code={forecastNow.data.weatherCode}
@@ -68,7 +68,7 @@ export function Weather({ profile }: { profile: ProfileFull }) {
                     : false
                 }
               />
-              <div className="flex flex-col items-start justify-center gap-1">
+              <div className="flex flex-col items-start justify-center gap-1 text-nowrap">
                 <span className="text-4xl font-bold">
                   {weatherCode[forecastNow.data.weatherCode] ?? "Unknown"}
                 </span>
@@ -80,7 +80,7 @@ export function Weather({ profile }: { profile: ProfileFull }) {
                 </div>
               </div>
             </div>
-            <div className="flex flex-col items-end justify-center text-base">
+            <div className="flex w-full flex-col items-center justify-center text-nowrap text-base sm:items-end">
               <div className="flex flex-row items-center gap-1">
                 <span className="font-semibold">Humidity:</span>
                 <span className="font-normal">
