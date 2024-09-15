@@ -62,10 +62,10 @@ export function Tasks({ userId }: { userId: string }) {
 
   return (
     <>
-      <h2 className="mb-1 w-full max-w-96 text-center text-3xl font-semibold tracking-tight">
+      <h2 className="mb-1 w-full max-w-full text-center text-3xl font-semibold tracking-tight lg:max-w-96">
         Tasks
       </h2>
-      <div className="custom-scrollbar flex h-full max-h-full w-full max-w-96 flex-col justify-end gap-2 overflow-y-auto px-3">
+      <div className="custom-scrollbar flex h-full w-full max-w-full flex-col justify-end gap-2 overflow-y-auto px-3 lg:max-w-96">
         {tasksQuery.data?.map((task) => (
           <div
             key={task.id}

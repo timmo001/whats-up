@@ -18,29 +18,29 @@ export default async function DashboardPage() {
 
   return (
     <main
-      className="grid min-h-screen w-full grid-cols-1 gap-8 md:grid-cols-8"
+      className="grid min-h-screen w-full grid-cols-1 gap-6 lg:grid-cols-8"
       style={{
         minHeight: "calc(100vh - 64px)",
       }}
     >
       {/* Greeting */}
-      <section className="col-span-8 flex w-full flex-col items-center justify-end p-6">
+      <section className="flex w-full flex-col items-center justify-end p-6 lg:col-span-8">
         <TimeGreeting profile={profile} />
       </section>
       {/* Time/Date */}
-      <section className="col-span-8 flex w-full flex-col items-center justify-end gap-1 px-6 pt-6">
+      <section className="flex w-full flex-col items-center justify-end gap-1 px-6 pt-6 lg:col-span-8">
         <TimeDate />
       </section>
       {/* Tasks */}
-      <section className="col-span-3 flex w-full flex-col items-start justify-end gap-1 pb-6 ps-6">
+      <section className="flex w-full flex-col items-start justify-end gap-1 px-6 pb-6 lg:col-span-3 lg:px-0 lg:ps-6">
         <Tasks userId={user.id} />
       </section>
       {/* Agenda */}
-      <section className="col-span-2 flex w-full flex-col items-center justify-end gap-1 pb-6">
+      <section className="flex w-full flex-col items-center justify-end gap-1 px-6 pb-6 lg:col-span-2 lg:px-0">
         {/* <Agenda /> */}
       </section>
       {/* Weather */}
-      <section className="col-span-3 flex w-full flex-col items-end justify-end gap-2 pb-6 pe-6">
+      <section className="flex w-full flex-col items-end justify-end gap-2 px-6 pb-6 lg:col-span-3 lg:px-0 lg:pe-6">
         <Weather profile={profile} />
       </section>
     </main>
