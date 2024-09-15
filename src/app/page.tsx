@@ -6,7 +6,12 @@ import { Button } from "~/components/ui/button";
 
 export default async function HomePage() {
   return (
-    <>
+    <main
+      className="flex min-h-screen w-full flex-col items-center justify-start gap-8 p-4"
+      style={{
+        minHeight: "calc(100vh - 64px)",
+      }}
+    >
       <section className="flex w-full flex-col items-center gap-3">
         <h1 className="flex items-center gap-3 text-5xl font-extrabold tracking-tight sm:text-[5rem]">
           <MessageCircleQuestion size={82} />
@@ -30,6 +35,6 @@ export default async function HomePage() {
         <h2 className="text-3xl font-semibold">Features</h2>
         <p className="text-xl font-light">TODO</p>
       </section>
-    </>
+    </main>
   );
 }

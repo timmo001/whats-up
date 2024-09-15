@@ -42,7 +42,7 @@ export function Weather({ profile }: { profile: ProfileFull }) {
   }, [forecastNow.data, forecastNow.isLoading, forecastNow.isError]);
 
   return (
-    <div className="flex flex-col items-center gap-1 text-center">
+    <>
       {forecastNow.isLoading ? (
         <span>Loading current forecast...</span>
       ) : forecastNow.isError ? (
@@ -57,65 +57,70 @@ export function Weather({ profile }: { profile: ProfileFull }) {
         </span>
       ) : (
         <>
-          <div className="flex flex-row flex-wrap items-center justify-center gap-6">
-            <WeatherIcon
-              className="h-32 w-32"
-              code={forecastNow.data.weatherCode}
-              night={
-                dateTime ? dateTime.hour() < 6 || dateTime.hour() >= 18 : false
-              }
-            />
-            <div className="flex flex-col items-start justify-center gap-1">
-              <span className="text-4xl font-bold">
-                {weatherCode[forecastNow.data.weatherCode] ?? "Unknown"}
-              </span>
-              <div className="flex flex-row items-start gap-1">
-                <span className="text-5xl font-semibold">
-                  {forecastNow.data.temperature.toFixed(1)}
+          <div className="flex w-full flex-row justify-between gap-1">
+            <div className="flex flex-row items-start justify-center gap-1">
+              <WeatherIcon
+                className="h-24 w-24"
+                code={forecastNow.data.weatherCode}
+                night={
+                  dateTime
+                    ? dateTime.hour() < 6 || dateTime.hour() >= 18
+                    : false
+                }
+              />
+              <div className="flex flex-col items-start justify-center gap-1">
+                <span className="text-4xl font-bold">
+                  {weatherCode[forecastNow.data.weatherCode] ?? "Unknown"}
                 </span>
-                <span className="text-2xl font-semibold">°C</span>
+                <div className="flex flex-row items-start gap-1">
+                  <span className="text-3xl font-semibold">
+                    {forecastNow.data.temperature.toFixed(1)}
+                  </span>
+                  <span className="text-lg font-semibold">°C</span>
+                </div>
               </div>
             </div>
-            <div className="ms-6 flex flex-col items-start justify-center text-lg">
+            <div className="flex flex-col items-end justify-center text-base">
               <div className="flex flex-row items-center gap-1">
                 <span className="font-semibold">Humidity:</span>
                 <span className="font-normal">
                   {forecastNow.data.humidity.toFixed(1)}
                 </span>
-                <span className="font-small text-base font-normal">%</span>
+                <span className="font-normal">%</span>
               </div>
               <div className="flex flex-row items-center gap-1">
                 <span className="font-semibold">Pressure:</span>
                 <span className="font-normal">
                   {forecastNow.data.pressureSurfaceLevel.toFixed(1)}
                 </span>
-                <span className="font-small text-base font-normal">hPa</span>
+                <span className="font-normal">hPa</span>
               </div>
               <div className="flex flex-row items-center gap-1">
                 <span className="font-semibold">Wind Speed:</span>
                 <span className="font-normal">
                   {forecastNow.data.windSpeed.toFixed(1)}
                 </span>
-                <span className="font-small text-base font-normal">m/s</span>
+                <span className="font-normal">m/s</span>
               </div>
               <div className="flex flex-row items-center gap-1">
                 <span className="font-semibold">Wind Direction:</span>
                 <span className="font-normal">
                   {forecastNow.data.windDirectionCardinal}
                 </span>
-                <span className="font-small text-base font-normal">
+                <span className="text-base font-normal">
                   ({forecastNow.data.windDirection}°)
                 </span>
               </div>
             </div>
           </div>
           {dateTime && (
-            <span className="mt-4 text-sm font-semibold">
-              Last updated: {dateTime.fromNow()}
-            </span>
+            <div className="flex w-full flex-row items-center justify-center gap-1">
+              <span className="text-xs font-semibold">Last updated:</span>
+              <span className="text-xs font-normal">{dateTime.fromNow()}</span>
+            </div>
           )}
         </>
       )}
-    </div>
+    </>
   );
 }

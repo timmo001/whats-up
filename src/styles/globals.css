@@ -62,7 +62,23 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
+  }
+
+  /* Create a custom scrollbar for use in horizontal scolling,
+     to not use the default browser's version */
+  .custom-scrollbar::-webkit-scrollbar {
+    height: 0.4rem;
+    width: 0.4rem;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-foreground/40;
   }
 }

@@ -71,14 +71,7 @@ export default function RootLayout({
               <TRPCReactProvider>
                 <HydrateClient>
                   <Header />
-                  <main
-                    className="flex min-h-screen w-full flex-col items-center justify-start gap-8 p-4"
-                    style={{
-                      minHeight: "calc(100vh - 64px)",
-                    }}
-                  >
-                    {children}
-                  </main>
+                  {children}
                   <Toaster />
                 </HydrateClient>
               </TRPCReactProvider>
