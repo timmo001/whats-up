@@ -62,10 +62,10 @@ export function Tasks({ userId }: { userId: string }) {
 
   return (
     <>
-      <h2 className="mb-1 w-full max-w-full text-center text-3xl font-semibold tracking-tight xl:max-w-96">
+      <h2 className="mb-1 w-full max-w-full text-center text-3xl font-semibold tracking-tight xl:max-w-[26rem]">
         Tasks
       </h2>
-      <div className="w-full max-w-full xl:max-w-96">
+      <div className="w-full max-w-full xl:max-w-[26rem]">
         <div className="custom-scrollbar flex flex-col gap-2 overflow-y-auto px-3 py-1 xl:max-h-[33vh]">
           {tasksQuery.data?.map((task) => (
             <div

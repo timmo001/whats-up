@@ -44,19 +44,21 @@ export const profileRouter = createTRPCRouter({
     .input(
       z.object({
         userId: z.string().min(1),
-        name: z.string().min(1),
-        latitude: z.number(),
-        longitude: z.number(),
+        name: z.string().min(1).optional(),
+        latitude: z.number().optional(),
+        longitude: z.number().optional(),
+        calendarURL: z.string().optional(),
       }),
     )
     .mutation(async ({ ctx, input }) => {
       await ctx.db
         .update(profiles)
         .set({
+          initialised: true,
           name: input.name,
           latitude: input.latitude,
           longitude: input.longitude,
-          initialised: true,
+          calendarURL: input.calendarURL,
         })
         .where(eq(profiles.userId, input.userId));
     }),

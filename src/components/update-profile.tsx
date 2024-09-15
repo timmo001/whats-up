@@ -29,20 +29,25 @@ import {
 import { Input } from "~/components/ui/input";
 
 const ProfileSchema = z.object({
-  name: z.string().min(2, {
-    message: "Name must be at least 2 characters.",
-  }),
-  latitude: z.number(),
-  longitude: z.number(),
+  name: z
+    .string()
+    .min(2, {
+      message: "Name must be at least 2 characters.",
+    })
+    .optional(),
+  latitude: z.number().optional(),
+  longitude: z.number().optional(),
+  calendarURL: z.string().optional(),
 });
 type Profile = z.infer<typeof ProfileSchema>;
 
 export type ProfileFull = {
-  userId: string;
+  userId: string | null;
+  initialised: boolean | null;
   name: string | null;
   latitude: number | null;
   longitude: number | null;
-  initialised: boolean | null;
+  calendarURL: string | null;
   createdAt: Date;
   updatedAt: Date | null;
 };
@@ -79,6 +84,7 @@ export function UpdateProfile({
       name: "",
       latitude: 32,
       longitude: 104.9,
+      calendarURL: "",
     },
   });
 
@@ -99,6 +105,7 @@ export function UpdateProfile({
       name: form.getValues("name"),
       latitude: Number(form.getValues("latitude")),
       longitude: Number(form.getValues("longitude")),
+      calendarURL: form.getValues("calendarURL"),
     });
     console.log("Update profile:", data);
 
@@ -114,6 +121,7 @@ export function UpdateProfile({
       name: data.name,
       latitude: data.latitude,
       longitude: data.longitude,
+      calendarURL: data.calendarURL,
     });
   }
 
@@ -190,6 +198,24 @@ export function UpdateProfile({
                   <FormControl>
                     <Input type="number" placeholder="104.9" {...field} />
                   </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="calendarURL"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Calendar URL</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormDescription>
+                    This is an ICS URL. You can find this by going to your
+                    calendar provider and finding the &quot;Share Calendar&quot;
+                    option.
+                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}

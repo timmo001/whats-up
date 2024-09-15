@@ -22,10 +22,11 @@ export const profiles = createTable(
   "profile",
   {
     userId: text("user_id", { length: 256 }).primaryKey(),
+    initialised: int("initialised", { mode: "boolean" }).default(false),
     name: text("name", { length: 256 }),
     latitude: real("latitude"),
     longitude: real("longitude"),
-    initialised: int("initialised", { mode: "boolean" }).default(false),
+    calendarURL: text("calendar_url", { length: 2048 }),
     createdAt: int("created_at", { mode: "timestamp" })
       .default(sql`(unixepoch())`)
       .notNull(),

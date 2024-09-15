@@ -1,0 +1,1 @@
+ALTER TABLE `whats-up_profile` ADD `calendar_url` text(2048);

@@ -57,7 +57,7 @@ export function Weather({ profile }: { profile: ProfileFull }) {
         </span>
       ) : (
         <>
-          <div className="flex w-full flex-row flex-wrap justify-stretch gap-2 sm:flex-nowrap">
+          <div className="flex w-full flex-row flex-wrap justify-stretch gap-2 xl:max-w-96">
             <div className="flex flex-1 flex-row items-center justify-center gap-1 sm:justify-start">
               <WeatherIcon
                 className="h-24 w-24"
@@ -80,7 +80,7 @@ export function Weather({ profile }: { profile: ProfileFull }) {
                 </div>
               </div>
             </div>
-            <div className="flex w-full flex-col items-center justify-center text-nowrap text-base sm:items-end">
+            <div className="flex w-full flex-col items-center justify-center text-nowrap text-base sm:items-start">
               <div className="flex flex-row items-center gap-1">
                 <span className="font-semibold">Humidity:</span>
                 <span className="font-normal">
