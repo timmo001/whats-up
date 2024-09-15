@@ -18,13 +18,13 @@ export default async function DashboardPage() {
 
   return (
     <main
-      className="grid min-h-screen w-full grid-cols-1 gap-6 xl:grid-cols-8"
+      className="grid min-h-screen w-full grid-cols-1 gap-3 xl:grid-cols-8"
       style={{
         minHeight: "calc(100vh - 64px)",
       }}
     >
       {/* Greeting */}
-      <section className="col-span-1 flex w-full flex-col items-center justify-start p-6 text-center xl:col-span-8">
+      <section className="col-span-1 flex w-full flex-col items-center justify-start gap-1 p-6 text-center xl:col-span-8">
         <TimeGreeting profile={profile} />
       </section>
       {/* Time/Date */}
