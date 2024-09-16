@@ -29,12 +29,7 @@ import {
 import { Input } from "~/components/ui/input";
 
 const ProfileSchema = z.object({
-  name: z
-    .string()
-    .min(2, {
-      message: "Name must be at least 2 characters.",
-    })
-    .optional(),
+  name: z.string().optional(),
   latitude: z.number().optional(),
   longitude: z.number().optional(),
   calendarURL: z.string().optional(),
