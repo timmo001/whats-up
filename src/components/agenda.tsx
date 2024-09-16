@@ -59,12 +59,12 @@ export function Agenda({ profile }: { profile: ProfileFull }) {
             {events?.map((event) => (
               <div
                 key={event.summary}
-                className="flex h-10 w-full flex-row justify-between overflow-ellipsis whitespace-nowrap rounded-md border border-input bg-background/60 px-3 py-2 ring-offset-background"
+                className="flex h-10 w-full flex-row justify-between whitespace-nowrap rounded-md border border-input bg-background/60 px-3 py-2 ring-offset-background"
               >
-                <span className="max-w-[50%] flex-1 overflow-ellipsis text-start text-base text-muted-foreground">
+                <span className="max-w-[50%] flex-1 overflow-hidden overflow-ellipsis text-start text-base text-muted-foreground">
                   {event.summary}
                 </span>
-                <span className="overflow-ellipsis text-end text-sm text-muted-foreground">
+                <span className="overflow-hidden overflow-ellipsis text-end text-sm text-muted-foreground">
                   {!event.start.isSame(now, "day")
                     ? event.start.format(
                         `DD/MM${event.start.isAfter(now, "year") ? "/YY" : ""} `,
