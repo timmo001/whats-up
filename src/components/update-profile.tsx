@@ -172,7 +172,7 @@ export function UpdateProfile({
                 </FormItem>
               )}
             />
-            <h3 className="mt-2 text-lg font-medium">Location</h3>
+            <h3 className="mt-2 text-lg font-medium">Location (Optional)</h3>
             <Button type="button" variant="outline" onClick={onGetLocation}>
               <LocateFixed className="h-4 w-4" />
               <span className="ms-1">Use my location</span>
@@ -182,7 +182,7 @@ export function UpdateProfile({
               name="latitude"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Latitude (Optional)</FormLabel>
+                  <FormLabel>Latitude</FormLabel>
                   <FormControl>
                     <Input type="number" placeholder="32" {...field} />
                   </FormControl>
@@ -195,7 +195,7 @@ export function UpdateProfile({
               name="longitude"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Longitude (Optional)</FormLabel>
+                  <FormLabel>Longitude</FormLabel>
                   <FormControl>
                     <Input type="number" placeholder="104.9" {...field} />
                   </FormControl>
@@ -203,13 +203,13 @@ export function UpdateProfile({
                 </FormItem>
               )}
             />
-            <h3 className="mt-2 text-lg font-medium">Calendar</h3>
+            <h3 className="mt-2 text-lg font-medium">Calendar (Optional)</h3>
             <FormField
               control={form.control}
               name="calendarURL"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>URL (Optional)</FormLabel>
+                  <FormLabel>URL</FormLabel>
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
