@@ -15,7 +15,6 @@ export function Tasks({ userId }: { userId: string }) {
   const createTask = api.task.create.useMutation({
     onSuccess: async () => {
       console.log("Task created");
-      toast.success("Task created");
       await tasksQuery.refetch();
     },
     onError: (error) => {
@@ -51,7 +50,7 @@ export function Tasks({ userId }: { userId: string }) {
   // Delete
   const deleteTask = api.task.delete.useMutation({
     onSuccess: async () => {
-      toast.success("Task deleted");
+      console.log("Task deleted");
       await tasksQuery.refetch();
     },
     onError: (error) => {
