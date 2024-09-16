@@ -140,6 +140,7 @@ export function UpdateProfile({
         name: initialProfile?.name ?? "",
         latitude: initialProfile?.latitude ?? 32,
         longitude: initialProfile?.longitude ?? 104.9,
+        calendarURL: initialProfile?.calendarURL ?? "",
       });
     }
   }, [form, open, initialProfile, userId]);
