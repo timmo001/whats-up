@@ -27,6 +27,7 @@ import {
   FormMessage,
 } from "~/components/ui/form";
 import { Input } from "~/components/ui/input";
+import { useRouter } from "next/navigation";
 
 const ProfileSchema = z.object({
   name: z.string().optional(),
@@ -57,6 +58,7 @@ export function UpdateProfile({
   onClose: () => void;
 }) {
   const { userId } = useAuth();
+  const router = useRouter();
 
   const utils = api.useUtils();
 
@@ -66,6 +68,9 @@ export function UpdateProfile({
       toast.success("Profile updated successfully");
       console.log("Profile updated successfully");
       onClose();
+      setTimeout(() => {
+        router.refresh();
+      }, 400);
     },
     onError: (error) => {
       toast.error("Error updating profile. See console for details.");
