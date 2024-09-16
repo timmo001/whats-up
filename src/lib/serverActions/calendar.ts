@@ -1,6 +1,5 @@
 "use server";
 import "server-only";
-import dayjs from "dayjs";
 import ICAL from "ical.js";
 
 export async function getCalendarEvents(calendarURL: string) {

@@ -27,7 +27,13 @@ export function Agenda({ profile }: { profile: ProfileFull }) {
           end: dayjs(e.end),
         }))
         .filter(
-          (event) => event.end.isAfter(dateNow) || event.start.isAfter(dateNow),
+          (event) =>
+            // Only return events that have not ended and are not in the past
+            event.end.isAfter(dateNow) || event.start.isAfter(dateNow),
+        )
+        .filter((event) =>
+          // Return events for the next month
+          event.start.isBefore(dateNow.add(1, "month")),
         )
         .sort((a, b) => a.start.diff(b.start));
     },
