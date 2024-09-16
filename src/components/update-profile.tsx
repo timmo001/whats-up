@@ -161,7 +161,7 @@ export function UpdateProfile({
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Name</FormLabel>
+                  <FormLabel>Name (Optional)</FormLabel>
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
@@ -182,7 +182,7 @@ export function UpdateProfile({
               name="latitude"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Latitude</FormLabel>
+                  <FormLabel>Latitude (Optional)</FormLabel>
                   <FormControl>
                     <Input type="number" placeholder="32" {...field} />
                   </FormControl>
@@ -195,7 +195,7 @@ export function UpdateProfile({
               name="longitude"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Longitude</FormLabel>
+                  <FormLabel>Longitude (Optional)</FormLabel>
                   <FormControl>
                     <Input type="number" placeholder="104.9" {...field} />
                   </FormControl>
@@ -209,7 +209,7 @@ export function UpdateProfile({
               name="calendarURL"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>URL</FormLabel>
+                  <FormLabel>URL (Optional)</FormLabel>
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
