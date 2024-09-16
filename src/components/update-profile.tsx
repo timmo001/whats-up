@@ -203,12 +203,13 @@ export function UpdateProfile({
                 </FormItem>
               )}
             />
+            <h3 className="mt-2 text-lg font-medium">Calendar</h3>
             <FormField
               control={form.control}
               name="calendarURL"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Calendar URL</FormLabel>
+                  <FormLabel>URL</FormLabel>
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
