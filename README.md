@@ -2,7 +2,7 @@
 
 Track your day from one place.
 
-[!Screenshot](https://github.com/timmo001/whats-up/raw/master/resources/screenshot.png)
+![Screenshot](https://github.com/timmo001/whats-up/raw/master/resources/screenshot.png)
 
 ## Development
 
