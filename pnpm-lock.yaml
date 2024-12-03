@@ -12,8 +12,8 @@ importers:
         specifier: ^6.5.1
         version: 6.5.1(next@15.0.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@clerk/themes':
-        specifier: ^2.1.48
-        version: 2.1.48
+        specifier: ^2.1.49
+        version: 2.1.49
       '@hookform/resolvers':
         specifier: ^3.9.1
         version: 3.9.1(react-hook-form@7.53.2(react@18.3.1))
@@ -194,12 +194,16 @@ packages:
       react-dom:
         optional: true
 
-  '@clerk/themes@2.1.48':
-    resolution: {integrity: sha512-5XUEOR2PJF38kBUsjfBg+gXXdXoePg10Iu05In4KBHl7IYWsJrloskGAcqWKqGc/l41XDnUDkR6Kdzd8ECEgUA==}
+  '@clerk/themes@2.1.49':
+    resolution: {integrity: sha512-fj6OdXEV11+bdhAFBggVDXdjEedJ4t3ZsHWrofbzjFVwoAAMJLGp44DVMjnKwntJQeyWzg2T2tVRXHBjvTG1zg==}
     engines: {node: '>=18.17.0'}
 
   '@clerk/types@4.35.0':
     resolution: {integrity: sha512-sBSYCCIXcwI+JHQRqBtskw10+rQ1NcA9w1G6ndnS48F5C+if6xI9OpYaaDjhhvzLjBeZFydKAOhe35mgC7bmoA==}
+    engines: {node: '>=18.17.0'}
+
+  '@clerk/types@4.35.1':
+    resolution: {integrity: sha512-+okFnYScyXF8/b2LZ97UM98hB3kn7vmgXG/oDbAXC1rl47CWfdYnCfoeHcGZtJMiFv8PoP3sgom86+iPaALQwQ==}
     engines: {node: '>=18.17.0'}
 
   '@drizzle-team/brocli@0.10.2':
@@ -3038,12 +3042,16 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  '@clerk/themes@2.1.48':
+  '@clerk/themes@2.1.49':
     dependencies:
-      '@clerk/types': 4.35.0
+      '@clerk/types': 4.35.1
       tslib: 2.4.1
 
   '@clerk/types@4.35.0':
+    dependencies:
+      csstype: 3.1.1
+
+  '@clerk/types@4.35.1':
     dependencies:
       csstype: 3.1.1
 
