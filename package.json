@@ -58,7 +58,7 @@
     "@typescript-eslint/parser": "^8.17.0",
     "drizzle-kit": "^0.29.1",
     "eslint": "^9.16.0",
-    "eslint-config-next": "^15.0.3",
+    "eslint-config-next": "^15.0.4",
     "eslint-plugin-drizzle": "^0.2.3",
     "postcss": "^8.4.49",
     "prettier": "^3.4.2",
