@@ -12,8 +12,8 @@ importers:
         specifier: ^6.10.4
         version: 6.10.4(next@15.1.6(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@clerk/themes':
-        specifier: ^2.2.14
-        version: 2.2.14
+        specifier: ^2.2.16
+        version: 2.2.16
       '@hookform/resolvers':
         specifier: ^3.10.0
         version: 3.10.0(react-hook-form@7.54.2(react@19.0.0))
@@ -190,12 +190,16 @@ packages:
       react-dom:
         optional: true
 
-  '@clerk/themes@2.2.14':
-    resolution: {integrity: sha512-7Kbk/cjWfKAZx/ZcYJOB4wJNUma5s0X6POmF1zOokI3LmTUi/PqFWXMuii1AFbMgk0PAm+l6m3I8xnx7HpwXUw==}
+  '@clerk/themes@2.2.16':
+    resolution: {integrity: sha512-6CZwBl5VSTkAOo3OSyDZhefMDM8KXHoMcMYfbu+PdAvtl4C48bCkFNSWLsxVsR4H96TdpLL/k0zemao6YJhAjA==}
     engines: {node: '>=18.17.0'}
 
   '@clerk/types@4.44.2':
     resolution: {integrity: sha512-s0Nznnf7RjnkvkVXG+ahty88HfCPIoxLKMa6YfMt0alQ7KXeDouQlLKXexX5c1sX3FhcokYmBukVsbeoZAZdqA==}
+    engines: {node: '>=18.17.0'}
+
+  '@clerk/types@4.45.0':
+    resolution: {integrity: sha512-DSXPWq1xD01tzyHv7CugX2T/XfVUZX2xxQ92cs+JPTrGoqIYm+yjRWqOz1CVJ/76TbYMOrB0efCGOxEcNV/PQw==}
     engines: {node: '>=18.17.0'}
 
   '@drizzle-team/brocli@0.10.2':
@@ -2765,7 +2769,7 @@ snapshots:
   '@clerk/backend@1.23.9(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
     dependencies:
       '@clerk/shared': 2.20.16(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
-      '@clerk/types': 4.44.2
+      '@clerk/types': 4.45.0
       cookie: 1.0.2
       snakecase-keys: 8.0.1
       tslib: 2.4.1
@@ -2776,7 +2780,7 @@ snapshots:
   '@clerk/clerk-react@5.22.8(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
     dependencies:
       '@clerk/shared': 2.20.16(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
-      '@clerk/types': 4.44.2
+      '@clerk/types': 4.45.0
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
       tslib: 2.4.1
@@ -2796,7 +2800,7 @@ snapshots:
 
   '@clerk/shared@2.20.16(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
     dependencies:
-      '@clerk/types': 4.44.2
+      '@clerk/types': 4.45.0
       dequal: 2.0.3
       glob-to-regexp: 0.4.1
       js-cookie: 3.0.5
@@ -2806,12 +2810,16 @@ snapshots:
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
 
-  '@clerk/themes@2.2.14':
+  '@clerk/themes@2.2.16':
     dependencies:
-      '@clerk/types': 4.44.2
+      '@clerk/types': 4.45.0
       tslib: 2.4.1
 
   '@clerk/types@4.44.2':
+    dependencies:
+      csstype: 3.1.1
+
+  '@clerk/types@4.45.0':
     dependencies:
       csstype: 3.1.1
 
