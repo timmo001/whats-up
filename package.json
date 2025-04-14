@@ -17,7 +17,7 @@
     "@clerk/nextjs": "^6.14.3",
     "@clerk/themes": "^2.2.31",
     "@hookform/resolvers": "^5.0.1",
-    "@libsql/client": "^0.15.2",
+    "@libsql/client": "^0.15.3",
     "@radix-ui/react-alert-dialog": "^1.1.7",
     "@radix-ui/react-checkbox": "^1.1.5",
     "@radix-ui/react-dialog": "^1.1.7",
